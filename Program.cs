@@ -23,7 +23,15 @@ namespace DemoApp
 
         public static int GetPerfectDigit(int digit)
         {
-            int numToAppend = 10 - digit;
+            int value;
+            int sum = 0;
+            foreach(var item in digit.ToString().ToCharArray())
+            {
+                int.TryParse(item.ToString(), out value);
+                sum = sum + value;
+            }
+
+            int numToAppend = 10 - sum;
 
             string result = Convert.ToString(digit) + Convert.ToString(numToAppend);
 
