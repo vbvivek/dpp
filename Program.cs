@@ -10,13 +10,21 @@ namespace DemoApp
             
             int number = Convert.ToInt32(Console.ReadLine());
 
-            if(number > 0)
+            if(number >= 0)
             {
-                Console.WriteLine($"The perfect digit is= {GetPerfectDigit(number)}");
+                int processedNum = GetPerfectDigit(number);
+                if (processedNum != -1)
+                {
+                    Console.WriteLine($"The perfect digit is= {processedNum}");
+                }
+                else
+                {
+                    Console.WriteLine("Sum is already 10..So already perfect");
+                }
             }
             else
             {
-                Console.WriteLine($"Please enter a positive number");
+                Console.WriteLine($"Please enter a positive number greater than zero");
             }
             Console.ReadKey();
         }
@@ -31,11 +39,18 @@ namespace DemoApp
                 sum = sum + value;
             }
 
-            int numToAppend = 10 - sum;
+            if (sum != 10)
+            {
+                int numToAppend = 10 - sum;
 
-            string result = Convert.ToString(digit) + Convert.ToString(numToAppend);
+                string result = Convert.ToString(digit) + Convert.ToString(numToAppend);
 
-            return Convert.ToInt32(result);
+                return Convert.ToInt32(result);
+            }
+            else
+            {
+                return -1;
+            }
         }
     }
 }
